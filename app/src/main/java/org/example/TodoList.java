@@ -11,9 +11,8 @@ public class TodoList {
         completedTasks = new ArrayList<>();
     }
 
-public void add(String task) {
+    public void add(String task) {
         if (task == null || task.trim().isEmpty()) {
-            System.out.println("can't add an empty task.");
             return;
         }
 
@@ -22,61 +21,30 @@ public void add(String task) {
 
     public void complete(String task) {
         if (task == null || task.trim().isEmpty()) {
-            System.out.println("invalid task.");
             return;
         }
 
         if (tasks.contains(task)) {
             tasks.remove(task);
             completedTasks.add(task);
-        } else if (completedTasks.contains(task)) {
-            System.out.println("task is already complete.");
-        } else {
-            System.out.println("task was not found.");
         }
     }
 
-    public void all() {
-        if (tasks.isEmpty() && completedTasks.isEmpty()) {
-            System.out.println("The todo list is empty.");
-            return;
-        }
+    public ArrayList<String> all() {
+        ArrayList<String> result = new ArrayList<>();
 
-        System.out.println("all tasks:");
+        result.addAll(tasks);
+        result.addAll(completedTasks);
 
-        for (String task : tasks) {
-            System.out.println("[ ] " + task);
-        }
-
-        for (String task : completedTasks) {
-            System.out.println("[X] " + task);
-        }
+        return result;
     }
 
-    public void complete() {
-        if (completedTasks.isEmpty()) {
-            System.out.println("there are no completed tasks.");
-            return;
-        }
-
-        System.out.println("completed tasks:");
-
-        for (String task : completedTasks) {
-            System.out.println("[X] " + task);
-        }
+    public ArrayList<String> complete() {
+        return completedTasks;
     }
 
-    public void incomplete() {
-        if (tasks.isEmpty()) {
-            System.out.println("there are no incomplete tasks.");
-            return;
-        }
-
-        System.out.println("incomplete tasks:");
-
-        for (String task : tasks) {
-            System.out.println("[ ] " + task);
-        }
+    public ArrayList<String> incomplete() {
+        return tasks;
     }
 
     public void clear() {
